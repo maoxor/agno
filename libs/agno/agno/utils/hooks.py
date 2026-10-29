@@ -105,9 +105,9 @@ def normalize_pre_hooks(
             else:
                 # Check if the hook is async and used within sync methods
                 if not async_mode:
-                    import asyncio
+                    import inspect
 
-                    if asyncio.iscoroutinefunction(hook):
+                    if inspect.iscoroutinefunction(hook):
                         raise ValueError(
                             f"Cannot use {get_hook_name(hook)} (an async hook) with `run()`. Use `arun()` instead."
                         )
@@ -148,9 +148,9 @@ def normalize_post_hooks(
             else:
                 # Check if the hook is async and used within sync methods
                 if not async_mode:
-                    import asyncio
+                    import inspect
 
-                    if asyncio.iscoroutinefunction(hook):
+                    if inspect.iscoroutinefunction(hook):
                         raise ValueError(
                             f"Cannot use {get_hook_name(hook)} (an async hook) with `run()`. Use `arun()` instead."
                         )
